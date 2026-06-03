@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='3.5'%3E%3C/circle%3E%3Cpath d='M12 2v6.5M3.34 17l5.63-3.25M20.66 17l-5.63-3.25'%3E%3C/path%3E%3C/svg%3E">  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="newtab.css">
+</head>
+<body>
+
+  <!-- ONBOARDING SCREEN -->
+  <div id="onboarding-screen" class="hidden">
+    <div class="onboarding-card">
+      <h2>Welcome to Moments</h2>
+      <p>Enter your exact date of birth to initialize your visual timeline map.</p>
+      <form id="onboarding-form" novalidate>
+        <div class="exact-input-row">
+          <div class="input-cell">
+            <label for="ob-day">Day</label>
+            <input type="number" id="ob-day" placeholder="15" min="1" max="31" required autocomplete="off">
+          </div>
+          <div class="input-cell">
+            <label for="ob-month">Month</label>
+            <input type="number" id="ob-month" placeholder="4" min="1" max="12" required autocomplete="off">
+          </div>
+          <div class="input-cell">
+            <label for="ob-year">Year</label>
+            <input type="number" id="ob-year" placeholder="1999" min="1900" max="2100" required autocomplete="off">
+          </div>
+        </div>
+        <div id="ob-error-bubble" class="error-bubble hidden" role="alert" aria-live="polite">Invalid</div>
+        <button type="submit" class="submit-action-btn">Initialize Map</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SCREEN -->
+  <main id="app-container" class="hidden" role="main">
+
+    <div class="center-block">
+
+      <!-- Digital Clock -->
+      <section class="clock-segment" aria-label="Current time">
+        <div class="digital-time" aria-live="off">
+          <span id="hours">00</span>
+          <span class="divider-colon" aria-hidden="true">:</span>
+          <span id="minutes">00</span>
+          <span class="divider-colon" aria-hidden="true">:</span>
+          <span id="seconds">00</span>
+          <span id="milliseconds" class="ms" hidden aria-hidden="true"></span>
+        </div>
+        <div class="time-label" aria-hidden="true">TIME KEEPS MOVING</div>
+      </section>
+
+      <!-- Life Calendar Grid -->
+      <section class="map-grid-segment" aria-label="Life calendar">
+        <div class="grid-labels">
+          <span id="scroll-state-label" class="grid-lbl-left">--</span>
+          <span id="active-month-label" class="grid-lbl-right">--</span>
+        </div>
+        <div id="canvas-grid" class="canvas-grid" role="img" aria-label="Life months visualization"></div>
+        <div class="grid-footer-labels">
+          <span id="hover-month-count">MONTH --</span>
+          <span id="timeline-span-limit">AGE 90</span>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Bottom Stats -->
+    <div class="bottom-controls-bar">
+      <div class="metrics-columns" role="region" aria-label="Life statistics">
+        <div class="metric-block orange-highlight">
+          <span id="lived-counter" class="metric-num" aria-label="Months lived">--</span>
+          <span class="metric-title">MONTHS LIVED</span>
+        </div>
+        <div class="metric-block gray-highlight">
+          <span id="left-counter" class="metric-num" aria-label="Months remaining">--</span>
+          <span class="metric-title">MONTHS LEFT</span>
+        </div>
+        <div class="metric-block green-highlight">
+          <span id="percent-counter" class="metric-num" aria-label="Percentage of life lived">--%</span>
+          <span class="metric-title">OF YOUR LIFE</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="newtab.js"></script>
+</body>
+</html>
